@@ -520,6 +520,174 @@ footer{margin:72px -24px 0;max-width:none;background:#f2f4f6;color:#6b7684;font-
 }
 @media (hover:none){.card:hover .sample{transform:none!important;box-shadow:none!important}}
 @media (max-width:560px){footer{margin:48px -16px 0!important;padding:22px 16px calc(36px + env(safe-area-inset-bottom))!important}}
+
+/* ===== round: smaller hero, web notice ===== */
+h1{font-size:clamp(24px,3.4vw,36px);letter-spacing:-.035em}
+.lede{font-size:clamp(14px,1.25vw,16px);margin-top:10px}
+.webnote{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:6px 12px 6px 6px;border-radius:10px;background:#e8f3ff;color:#1b64da;font-size:13px;font-weight:600;line-height:1.4}
+.webnote b{font-size:11px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:6px;background:#3182f6;color:#fff}
+@media (max-width:560px){h1{font-size:clamp(22px,6.6vw,28px)}.lede{font-size:14px}.webnote{font-size:12px;align-items:flex-start;border-radius:12px}.webnote b{margin-top:1px}}
+
+/* hover: font name turns blue */
+.name{transition:color .15s}
+.card:hover .name,.card:focus-within .name{color:#3182f6}
+
+/* ===== mobile round 2: compact filters ===== */
+@media (max-width:560px){
+  .webnote{white-space:nowrap;font-size:12px;align-items:center;border-radius:10px;padding:5px 10px 5px 5px;margin-bottom:12px}
+  .webnote b{margin-top:0}
+  .controls{gap:10px;padding:10px 0 12px;margin-bottom:12px}
+  .uses{gap:6px}
+  .uses .lbl{font-size:13px}
+  .uses label{position:relative;min-height:34px;padding:0 13px;font-size:13px}
+  .uses input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+  .dds{align-items:center;gap:6px}
+  .dd summary{min-height:34px;padding:0 12px;font-size:13px}
+  .dds .views{order:0;margin:0 0 0 auto!important;gap:4px}
+  .dds .views label{min-height:34px;width:34px;padding:0;justify-content:center;font-size:0;gap:0;border-radius:10px}
+  .dds .views svg{width:16px;height:16px}
+  .results{gap:6px}
+  .tally{padding:0!important}
+  .tally::before{font-size:13px!important}
+}
+
+/* ===== mobile round 3: filters in a toggle ===== */
+#ft{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.ftbtn{display:none}
+@media (max-width:560px){
+  .dds{display:contents}
+  .ftbtn{display:inline-flex;align-items:center;gap:6px;order:1;min-height:34px;padding:0 14px;border-radius:12px;background:#f2f4f6;color:#4e5968;font-size:13px;font-weight:600;cursor:pointer;user-select:none}
+  .ftbtn svg{width:16px;height:16px}
+  .ftbtn .fc{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#3182f6;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+  .controls:has(#ft:checked) .ftbtn{background:#e8f3ff;color:#1b64da}
+  #ft:focus-visible + .ftbtn{outline:2px solid #3182f6;outline-offset:2px}
+  .dds .views{order:1}
+  .uses{order:2;display:none!important}
+  .dd{order:3;display:none}
+  .controls:has(#ft:checked) .uses{display:flex!important;flex:1 1 100%!important;flex-wrap:wrap;overflow:visible;width:100%!important;margin:0;padding:0}
+  .controls:has(#ft:checked) .dd{display:block}
+}
+
+/* ===== color round: blue accents, less gray ===== */
+/* 1. selected view toggle */
+.views label{background:#fff;border:1px solid #e5e8eb;color:#4e5968}
+.views label:hover{background:#f9fafb;border-color:#d1d6db}
+.views label:has(input:checked){background:#3182f6;border-color:#3182f6;color:#fff}
+/* 2. chips / dropdowns: white + hairline */
+.uses label{background:#fff;border:1px solid #e5e8eb;color:#4e5968}
+.uses label:hover{background:#f9fafb;border-color:#d1d6db}
+.uses label:has(input:checked){background:#e8f3ff;border-color:#a9cdfb;color:#1b64da}
+.dd summary{background:#fff;border:1px solid #e5e8eb}
+.dd summary:hover{background:#f9fafb;border-color:#d1d6db}
+.dd-type:has(input:checked) summary{background:#e8f3ff;border:1px solid #a9cdfb;color:#1b64da}
+.ftbtn{background:#fff!important;border:1px solid #e5e8eb}
+.controls:has(#ft:checked) .ftbtn{background:#e8f3ff!important;border-color:#a9cdfb}
+/* 3. input: white with blue frame */
+.field input{background:#fff!important;border:2px solid #b9d7fd!important;box-shadow:none}
+.field input:hover{background:#fff!important;border-color:#3182f6!important}
+.field input:focus{border-color:#3182f6!important;box-shadow:0 0 0 4px rgba(49,130,246,.15)}
+.field .pen{color:#3182f6}
+/* 4. count in blue */
+.tally{display:block!important;min-height:0;line-height:1.4}
+.tally::before{content:"해당 폰트 "!important;color:var(--ink);font-weight:700}
+.tn{color:#3182f6;font-weight:800;font-variant-numeric:tabular-nums}
+.tn::before{content:counter(n)}
+.tn::after{content:"개"}
+@media (max-width:560px){.tally{font-size:13px!important}.tally::before{font-size:inherit!important}.tally .tx{display:none}}
+
+/* ===== type scale: group labels equal, chips larger ===== */
+.editor .lbl,.uses .lbl{font-size:16px;font-weight:700;letter-spacing:-.02em;color:var(--ink);min-width:0}
+.uses{gap:8px}
+.uses label{font-size:14px;padding:9px 18px}
+.dd summary{font-size:14px;padding:9px 16px}
+.views label{font-size:14px}
+.help{font-size:13px}
+@media (max-width:560px){
+  .editor .lbl,.uses .lbl{font-size:15px}
+  .uses label{font-size:14px;padding:0 14px;min-height:36px}
+  .dd summary,.ftbtn{font-size:14px;min-height:36px}
+  .dds .views label{min-height:36px;width:36px;font-size:0}
+  .help{font-size:12.5px}
+}
+
+/* ===== smaller view toggle ===== */
+.views{gap:4px}
+.views label{width:32px;height:32px;min-height:0;padding:0;justify-content:center;font-size:0;gap:0;border-radius:8px}
+.views svg{width:16px;height:16px}
+.views label:has(input:checked){background:#e8f3ff;border-color:#a9cdfb;color:#1b64da}
+@media (max-width:560px){.dds .views label{width:34px;height:34px;min-height:0;padding:0;font-size:0}.dds .views label:has(input:checked){background:#e8f3ff;border-color:#a9cdfb;color:#1b64da}}
+
+/* ===== smaller text input ===== */
+.field input{padding:9px 44px 9px 42px!important;font-size:15px;line-height:1.4;border-width:1.5px!important;border-radius:12px!important}
+.field .pen{left:15px;width:16px;height:16px}
+.clear{width:24px;height:24px;font-size:15px;right:10px}
+@media (max-width:560px){.field input{padding:9px 42px 9px 40px!important;font-size:16px}.field .pen{left:13px}.clear{width:26px;height:26px;right:8px}}
+
+/* ===== results line: one step closer to labels ===== */
+.tally{font-size:15px}
+.tally::before,.tn{font-size:15px}
+@media (max-width:560px){.tally{font-size:15px!important}.tally::before{font-size:inherit!important}}
+
+/* ===== one-line editor, aligned label column ===== */
+:root{--lblw:176px}
+.help{display:none!important}
+@media (min-width:561px){
+  .editor{flex-wrap:nowrap;align-items:center;gap:0 16px}
+  .editor .lbl{flex:0 0 var(--lblw);width:var(--lblw);white-space:nowrap}
+  .editor .field{flex:1 1 auto;min-width:0}
+  .uses .lbl{flex:0 0 calc(var(--lblw) + 8px);width:calc(var(--lblw) + 8px);min-width:0;white-space:nowrap}
+}
+
+/* ===== picked from v2: use tags, name search, list check marks, compact preview row ===== */
+:root{--lblw:152px}
+@media (min-width:561px){
+  .editor .lbl{flex:0 0 var(--lblw);width:var(--lblw)}
+  .editor .field{max-width:560px}
+  .uses .lbl{flex:0 0 calc(var(--lblw) + 8px);width:calc(var(--lblw) + 8px)}
+}
+/* allowed-use tags replace the hover table */
+.card .top .tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.tag{font-size:11.5px;font-weight:600;line-height:1.5;padding:2px 8px;border-radius:6px;background:#eef4ff;color:#1b64da;white-space:nowrap}
+.wrap:has(#u-print:checked) .tag[data-u=print],.wrap:has(#u-web:checked) .tag[data-u=web],.wrap:has(#u-pack:checked) .tag[data-u=pack],.wrap:has(#u-video:checked) .tag[data-u=video],.wrap:has(#u-embed:checked) .tag[data-u=embed],.wrap:has(#u-bici:checked) .tag[data-u=bici],.wrap:has(#u-ofl:checked) .tag[data-u=ofl]{background:#3182f6;color:#fff}
+.wrap:not(:has(#v-list:checked)) .card .lic{display:none!important}
+.wrap:has(#v-list:checked) .tags{display:none}
+/* list view: check marks */
+.wrap:has(#v-list:checked) .lic b{font-size:0;line-height:1}
+.wrap:has(#v-list:checked) .lic b::before{content:"✓";font-size:16px;font-weight:800;color:#3182f6}
+.wrap:has(#v-list:checked) .lic .no b::before{content:"–";font-weight:400;color:#b0b8c1}
+.wrap:has(#v-list:checked) .lic span{font-size:12px}
+/* name search */
+.results{grid-template-columns:minmax(0,1fr) auto auto!important;grid-template-areas:"tally tools views" "grid grid grid"!important}
+.results .rtools{grid-area:tools}
+.rtools{display:flex;align-items:center}
+.nsearch{position:relative;display:flex;align-items:center}
+.nsearch svg{position:absolute;left:11px;width:15px;height:15px;color:#8b95a1;pointer-events:none}
+.nsearch input{width:210px;height:34px;padding:0 12px 0 34px;border:1px solid #e5e8eb;border-radius:10px;background:#fff;font:inherit;font-size:14px;color:var(--ink)}
+.nsearch input::placeholder{color:#8b95a1}
+.nsearch input:focus{outline:none;border-color:#3182f6;box-shadow:0 0 0 3px rgba(49,130,246,.15)}
+@media (max-width:560px){
+  .results{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"tools" "tally" "grid"!important;gap:10px 16px!important}
+  .nsearch{flex:1}
+  .nsearch input{width:100%;font-size:16px}
+}
+
+/* result line wording: all vs. filtered */
+.tally::before{content:"전체 폰트 "!important}
+.wrap:has(.uses input:checked) .tally::before,.wrap:has(.ftypes input:checked) .tally::before,.wrap[data-q] .tally::before{content:"해당 폰트 "!important}
+.wrap:not(:has(.uses input:checked)) .tally .tx{display:none}
+
+/* hint in the default (all) state */
+.tally .hint{display:none;color:#6b7684;font-weight:500}
+.wrap:not(:has(.uses input:checked)):not(:has(.ftypes input:checked)):not([data-q]) .tally .hint{display:inline}
+@media (max-width:560px){.tally .hint{display:none!important}}
+
+/* tags: quiet gray by default, blue only for the checked uses */
+.tag{background:#f2f4f6;color:#6b7684;font-weight:500}
+
+
+/* quieter web note */
+.webnote{background:#f2f4f6;color:#6b7684;font-size:12.5px;font-weight:500;padding:5px 11px 5px 5px;margin-bottom:12px}
+.webnote b{background:#e5e8eb;color:#6b7684;font-weight:700}
 </style>
 </head>
 <body>
@@ -529,6 +697,7 @@ footer{margin:72px -24px 0;max-width:none;background:#f2f4f6;color:#6b7684;font-
 <input type="radio" name="detail" id="d-none" class="dradio" checked><input type="radio" name="detail" id="d-notosanskr" class="dradio"><input type="radio" name="detail" id="d-notoserifkr" class="dradio"><input type="radio" name="detail" id="d-nanumgothic" class="dradio"><input type="radio" name="detail" id="d-nanummyeongjo" class="dradio"><input type="radio" name="detail" id="d-ibmplexsanskr" class="dradio"><input type="radio" name="detail" id="d-gothica1" class="dradio"><input type="radio" name="detail" id="d-gowundodum" class="dradio"><input type="radio" name="detail" id="d-blackhansans" class="dradio"><input type="radio" name="detail" id="d-dohyeon" class="dradio"><input type="radio" name="detail" id="d-nanumpenscript" class="dradio"><input type="radio" name="detail" id="d-gowunbatang" class="dradio"><input type="radio" name="detail" id="d-jua" class="dradio"><input type="radio" name="detail" id="d-sunflower" class="dradio"><input type="radio" name="detail" id="d-songmyung" class="dradio"><input type="radio" name="detail" id="d-himelody" class="dradio"><input type="radio" name="detail" id="d-gaegu" class="dradio"><input type="radio" name="detail" id="d-gamjaflower" class="dradio"><input type="radio" name="detail" id="d-yeonsung" class="dradio"><input type="radio" name="detail" id="d-cutefont" class="dradio"><input type="radio" name="detail" id="d-stylish" class="dradio"><input type="radio" name="detail" id="d-kiranghaerang" class="dradio"><input type="radio" name="detail" id="d-dokdo" class="dradio"><input type="radio" name="detail" id="d-eastseadokdo" class="dradio"><input type="radio" name="detail" id="d-nanumbrushscript" class="dradio"><input type="radio" name="detail" id="d-hahmlet" class="dradio"><input type="radio" name="detail" id="d-orbit" class="dradio"><input type="radio" name="detail" id="d-dongle" class="dradio"><input type="radio" name="detail" id="d-bagelfatone" class="dradio"><input type="radio" name="detail" id="d-gugi" class="dradio"><input type="radio" name="detail" id="d-nanumgothiccoding" class="dradio">
   <header>
     <div>
+      <p class="webnote"><b>WEB</b>PC 웹 화면에 최적화돼 있어요.</p>
       <h1>홈앤쇼핑 <span>OFL 폰트 라이브러리</span></h1>
       <p class="lede">CG팀이 쓸 수 있는 폰트와 허용 범위를 한곳에 모았어요.<br>허용 범위를 체크하면 그 용도에 쓸 수 있는 폰트만 보여요.</p>
     </div>
@@ -778,14 +947,15 @@ footer{margin:72px -24px 0;max-width:none;background:#f2f4f6;color:#6b7684;font-
   <div class="src"><span>OFL 1.1</span><a href="https://github.com/google/fonts/blob/main/ofl/nanumgothiccoding/OFL.txt" target="_blank" rel="noopener">라이선스 원문 ↗</a></div>
 </article>
   </main>
+  <div class="rtools"><label class="nsearch"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m10.5 10.5 3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input type="search" id="nq" placeholder="폰트 이름 검색" aria-label="폰트 이름 검색" autocomplete="off"></label></div>
   <div class="views" role="radiogroup" aria-label="보기 방식"><label for="v-grid" title="격자형"><input type="radio" name="view" id="v-grid" checked><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>격자</label><label for="v-list" title="리스트형"><input type="radio" name="view" id="v-list"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="2" width="14" height="2.5" rx="1"/><rect x="1" y="6.75" width="14" height="2.5" rx="1"/><rect x="1" y="11.5" width="14" height="2.5" rx="1"/></svg>리스트</label></div>
-  <p class="tally"> · 체크한 범위를 모두 허용하는 폰트만 표시</p>
+  <p class="tally"><b class="tn"></b><span class="tx"> · 체크한 범위를 쓸 수 있는 것만 모았어요</span><span class="hint"> · 허용 범위를 체크하면 해당하는 것만 나와요</span></p>
   </div>
 
   <div class="controls">
-    <div class="editor"><label for="txt" class="lbl">예문을 직접 입력해 보세요</label><p class="help">원하는 문구를 입력하면 모든 폰트에 바로 적용돼요.</p><div class="field"><svg class="pen" viewBox="0 0 20 20" aria-hidden="true"><path d="M13.6 3.2a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L7.5 15.7l-3.9 1 1-3.9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 4.8l3.2 3.2" stroke="currentColor" stroke-width="1.6"/></svg><input type="text" id="txt" placeholder="원하는 문구를 입력하세요" value="깐깐함이 찾은 정답, 홈앤쇼핑" autocomplete="off"><button type="button" class="clear" id="clear" aria-label="예문 지우기">×</button></div><p class="nojs">이 화면(휴대폰 파일 미리보기)에서는 스크립트가 막혀서 예문이 카드에 반영되지 않아요. claude.ai 페이지나 브라우저로 열면 동작해요. </p></div>
+    <div class="editor"><label for="txt" class="lbl">문구 적고 폰트 미리보기</label><p class="help">원하는 문구를 입력하면 모든 폰트에 바로 적용돼요.</p><div class="field"><svg class="pen" viewBox="0 0 20 20" aria-hidden="true"><path d="M13.6 3.2a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L7.5 15.7l-3.9 1 1-3.9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 4.8l3.2 3.2" stroke="currentColor" stroke-width="1.6"/></svg><input type="text" id="txt" placeholder="원하는 문구를 입력하세요" value="깐깐함이 찾은 정답, 홈앤쇼핑" autocomplete="off"><button type="button" class="clear" id="clear" aria-label="예문 지우기">×</button></div><p class="nojs">이 화면(휴대폰 파일 미리보기)에서는 스크립트가 막혀서 예문이 카드에 반영되지 않아요. claude.ai 페이지나 브라우저로 열면 동작해요. </p></div>
     
-    <div class="uses" role="group" aria-label="허용 범위"><span class="lbl">허용 범위</span><label for="u-print"><input type="checkbox" id="u-print">인쇄</label><label for="u-web"><input type="checkbox" id="u-web">웹사이트</label><label for="u-pack"><input type="checkbox" id="u-pack">포장지</label><label for="u-video"><input type="checkbox" id="u-video">영상</label><label for="u-embed"><input type="checkbox" id="u-embed">임베딩</label><label for="u-bici"><input type="checkbox" id="u-bici">BI/CI</label><label for="u-ofl"><input type="checkbox" id="u-ofl">OFL</label></div><div class="dds"><details class="dd dd-size"><summary>크기 <b class="v"></b><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel sizes"><label for="s-18"><input type="radio" name="size" id="s-18">18px</label><label for="s-24"><input type="radio" name="size" id="s-24" checked>24px</label><label for="s-32"><input type="radio" name="size" id="s-32">32px</label></div></details><details class="dd dd-type"><summary>폰트 형태<i class="dot"></i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel"><form class="ftypes" aria-label="폰트 형태" onsubmit="return false"><button type="reset" class="all">전체<em></em></button><label for="f-gothic"><input type="checkbox" id="f-gothic">고딕<em></em></label><label for="f-batang"><input type="checkbox" id="f-batang">바탕<em></em></label><label for="f-classic"><input type="checkbox" id="f-classic">고전체<em></em></label><label for="f-hand"><input type="checkbox" id="f-hand">손글씨<em></em></label><label for="f-calli"><input type="checkbox" id="f-calli">캘리폰트<em></em></label><label for="f-deco"><input type="checkbox" id="f-deco">장식체<em></em></label><label for="f-talnemo"><input type="checkbox" id="f-talnemo">탈네모<em></em></label><label for="f-coding"><input type="checkbox" id="f-coding">코딩체<em></em></label></form></div></details></div>
+    <input type="checkbox" id="ft"><label for="ft" class="ftbtn" role="button" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M4.5 8h7M7 12h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>필터<b class="fc" hidden></b></label><div class="uses" role="group" aria-label="허용 범위"><span class="lbl">허용 범위</span><label for="u-print"><input type="checkbox" id="u-print">인쇄</label><label for="u-web"><input type="checkbox" id="u-web">웹사이트</label><label for="u-pack"><input type="checkbox" id="u-pack">포장지</label><label for="u-video"><input type="checkbox" id="u-video">영상</label><label for="u-embed"><input type="checkbox" id="u-embed">임베딩</label><label for="u-bici"><input type="checkbox" id="u-bici">BI/CI</label><label for="u-ofl"><input type="checkbox" id="u-ofl">OFL</label></div><div class="dds"><details class="dd dd-size"><summary>크기 <b class="v"></b><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel sizes"><label for="s-18"><input type="radio" name="size" id="s-18">18px</label><label for="s-24"><input type="radio" name="size" id="s-24" checked>24px</label><label for="s-32"><input type="radio" name="size" id="s-32">32px</label></div></details><details class="dd dd-type"><summary>폰트 형태<i class="dot"></i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel"><form class="ftypes" aria-label="폰트 형태" onsubmit="return false"><button type="reset" class="all">전체<em></em></button><label for="f-gothic"><input type="checkbox" id="f-gothic">고딕<em></em></label><label for="f-batang"><input type="checkbox" id="f-batang">바탕<em></em></label><label for="f-classic"><input type="checkbox" id="f-classic">고전체<em></em></label><label for="f-hand"><input type="checkbox" id="f-hand">손글씨<em></em></label><label for="f-calli"><input type="checkbox" id="f-calli">캘리폰트<em></em></label><label for="f-deco"><input type="checkbox" id="f-deco">장식체<em></em></label><label for="f-talnemo"><input type="checkbox" id="f-talnemo">탈네모<em></em></label><label for="f-coding"><input type="checkbox" id="f-coding">코딩체<em></em></label></form></div></details></div>
   </div>
 
   <div class="detail" id="detail-notosanskr" role="dialog" aria-modal="true" aria-label="본고딕 상세 정보"><label class="backdrop" for="d-none" aria-label="닫기"></label><div class="dpanel">
@@ -1010,6 +1180,28 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const n=document.ge
 document.addEventListener('click',e=>{document.querySelectorAll('details.dd[open]').forEach(d=>{if(!d.contains(e.target))d.removeAttribute('open')})});
 document.querySelectorAll('details.dd').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('details.dd[open]').forEach(o=>{if(o!==d)o.removeAttribute('open')})}));
 document.getElementById('clear').addEventListener('click',()=>{txt.value='';sync();txt.focus()});
+
+(function(){const mq=matchMedia('(max-width:560px)');const views=document.querySelector('.views'),dds=document.querySelector('.dds');if(!views||!dds)return;
+const ph=document.createComment('views');views.parentNode.insertBefore(ph,views);
+const place=()=>{if(mq.matches){dds.appendChild(views)}else{ph.parentNode.insertBefore(views,ph.nextSibling)}};
+place();(mq.addEventListener?mq.addEventListener('change',place):mq.addListener(place));})();
+
+(function(){const ft=document.getElementById('ft'),btn=document.querySelector('.ftbtn'),fc=document.querySelector('.ftbtn .fc');if(!ft||!btn)return;
+const upd=()=>{const n=document.querySelectorAll('.uses input:checked').length+(document.querySelector('.dd-type input:checked')?1:0);fc.textContent=n||'';fc.hidden=!n};
+document.addEventListener('change',upd);ft.addEventListener('change',()=>btn.setAttribute('aria-expanded',ft.checked));upd();})();
+
+document.querySelectorAll('.views label').forEach(l=>{if(!l.title)l.title=l.textContent.trim()});
+
+(function(){
+const $=(q,r=document)=>r.querySelector(q),$$=(q,r=document)=>[...r.querySelectorAll(q)];
+const keys=['print','web','pack','video','embed','bici','ofl'];
+$$('.card').forEach(c=>{const top=$('.top',c);if(!top)return;const wrap=document.createElement('div');wrap.className='tags';
+$$('.lic div',c).forEach((d,i)=>{if(!d.classList.contains('no')){const t=document.createElement('span');t.className='tag';t.dataset.u=keys[i];t.textContent=$('span',d).textContent;wrap.appendChild(t)}});top.appendChild(wrap)});
+const q=$('#nq'),cards=$$('.card'),norm=s=>s.toLowerCase().replace(/\s+/g,'');
+const idx=cards.map(c=>norm($('.name',c).textContent+' '+$('.by',c).textContent));
+const wr=$('.wrap');q.addEventListener('input',()=>{const v=norm(q.value);cards.forEach((c,i)=>{c.hidden=!!v&&!idx[i].includes(v)});if(v)wr.setAttribute('data-q','');else wr.removeAttribute('data-q')});
+})();
+
 </script>
 </body>
 </html>

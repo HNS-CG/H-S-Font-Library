@@ -688,6 +688,25 @@ h1{font-size:clamp(24px,3.4vw,36px);letter-spacing:-.035em}
 /* quieter web note */
 .webnote{background:#f2f4f6;color:#6b7684;font-size:12.5px;font-weight:500;padding:5px 11px 5px 5px;margin-bottom:12px}
 .webnote b{background:#e5e8eb;color:#6b7684;font-weight:700}
+
+/* count is written by script (CSS counters can lag on mobile Safari) */
+html.js .tn::before,html.js .tn::after{content:none!important}
+/* mobile: compact search button that expands */
+@media (max-width:560px){
+  .results{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"tally tools" "grid grid"!important;align-items:center}
+  .tally{white-space:nowrap}
+  .rtools{justify-self:end}
+  .nsearch{flex:none;width:36px;transition:width .2s ease}
+  .nsearch input{width:100%;height:36px;padding:0;font-size:16px;color:transparent;caret-color:transparent;cursor:pointer}
+  .nsearch input::placeholder{color:transparent}
+  .nsearch svg{left:10px;width:16px;height:16px;color:#4e5968}
+  .nsearch:has(input:focus),.nsearch:has(input:not(:placeholder-shown)){width:min(230px,calc(100vw - 162px))}
+  .nsearch:has(input:focus) input,.nsearch:has(input:not(:placeholder-shown)) input{padding:0 12px 0 34px;color:var(--ink);caret-color:auto;cursor:text}
+  .nsearch:has(input:focus) input::placeholder,.nsearch:has(input:not(:placeholder-shown)) input::placeholder{color:#8b95a1}
+  .nsearch:has(input:not(:placeholder-shown)) input{border-color:#3182f6}
+  .nsearch:has(input:not(:placeholder-shown)) svg{color:#3182f6}
+}
+@media (prefers-reduced-motion:reduce){.nsearch{transition:none}}
 </style>
 </head>
 <body>
@@ -955,7 +974,7 @@ h1{font-size:clamp(24px,3.4vw,36px);letter-spacing:-.035em}
   <div class="controls">
     <div class="editor"><label for="txt" class="lbl">문구 적고 폰트 미리보기</label><p class="help">원하는 문구를 입력하면 모든 폰트에 바로 적용돼요.</p><div class="field"><svg class="pen" viewBox="0 0 20 20" aria-hidden="true"><path d="M13.6 3.2a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L7.5 15.7l-3.9 1 1-3.9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 4.8l3.2 3.2" stroke="currentColor" stroke-width="1.6"/></svg><input type="text" id="txt" placeholder="원하는 문구를 입력하세요" value="깐깐함이 찾은 정답, 홈앤쇼핑" autocomplete="off"><button type="button" class="clear" id="clear" aria-label="예문 지우기">×</button></div><p class="nojs">이 화면(휴대폰 파일 미리보기)에서는 스크립트가 막혀서 예문이 카드에 반영되지 않아요. claude.ai 페이지나 브라우저로 열면 동작해요. </p></div>
     
-    <input type="checkbox" id="ft"><label for="ft" class="ftbtn" role="button" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M4.5 8h7M7 12h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>필터<b class="fc" hidden></b></label><div class="uses" role="group" aria-label="허용 범위"><span class="lbl">허용 범위</span><label for="u-print"><input type="checkbox" id="u-print">인쇄</label><label for="u-web"><input type="checkbox" id="u-web">웹사이트</label><label for="u-pack"><input type="checkbox" id="u-pack">포장지</label><label for="u-video"><input type="checkbox" id="u-video">영상</label><label for="u-embed"><input type="checkbox" id="u-embed">임베딩</label><label for="u-bici"><input type="checkbox" id="u-bici">BI/CI</label><label for="u-ofl"><input type="checkbox" id="u-ofl">OFL</label></div><div class="dds"><details class="dd dd-size"><summary>크기 <b class="v"></b><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel sizes"><label for="s-18"><input type="radio" name="size" id="s-18">18px</label><label for="s-24"><input type="radio" name="size" id="s-24" checked>24px</label><label for="s-32"><input type="radio" name="size" id="s-32">32px</label></div></details><details class="dd dd-type"><summary>폰트 형태<i class="dot"></i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel"><form class="ftypes" aria-label="폰트 형태" onsubmit="return false"><button type="reset" class="all">전체<em></em></button><label for="f-gothic"><input type="checkbox" id="f-gothic">고딕<em></em></label><label for="f-batang"><input type="checkbox" id="f-batang">바탕<em></em></label><label for="f-classic"><input type="checkbox" id="f-classic">고전체<em></em></label><label for="f-hand"><input type="checkbox" id="f-hand">손글씨<em></em></label><label for="f-calli"><input type="checkbox" id="f-calli">캘리폰트<em></em></label><label for="f-deco"><input type="checkbox" id="f-deco">장식체<em></em></label><label for="f-talnemo"><input type="checkbox" id="f-talnemo">탈네모<em></em></label><label for="f-coding"><input type="checkbox" id="f-coding">코딩체<em></em></label></form></div></details></div>
+    <input type="checkbox" id="ft"><label for="ft" class="ftbtn" role="button" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M4.5 8h7M7 12h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>허용 범위 필터<b class="fc" hidden></b></label><div class="uses" role="group" aria-label="허용 범위"><span class="lbl">허용 범위</span><label for="u-print"><input type="checkbox" id="u-print">인쇄</label><label for="u-web"><input type="checkbox" id="u-web">웹사이트</label><label for="u-pack"><input type="checkbox" id="u-pack">포장지</label><label for="u-video"><input type="checkbox" id="u-video">영상</label><label for="u-embed"><input type="checkbox" id="u-embed">임베딩</label><label for="u-bici"><input type="checkbox" id="u-bici">BI/CI</label><label for="u-ofl"><input type="checkbox" id="u-ofl">OFL</label></div><div class="dds"><details class="dd dd-size"><summary>크기 <b class="v"></b><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel sizes"><label for="s-18"><input type="radio" name="size" id="s-18">18px</label><label for="s-24"><input type="radio" name="size" id="s-24" checked>24px</label><label for="s-32"><input type="radio" name="size" id="s-32">32px</label></div></details><details class="dd dd-type"><summary>폰트 형태<i class="dot"></i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="ddpanel"><form class="ftypes" aria-label="폰트 형태" onsubmit="return false"><button type="reset" class="all">전체<em></em></button><label for="f-gothic"><input type="checkbox" id="f-gothic">고딕<em></em></label><label for="f-batang"><input type="checkbox" id="f-batang">바탕<em></em></label><label for="f-classic"><input type="checkbox" id="f-classic">고전체<em></em></label><label for="f-hand"><input type="checkbox" id="f-hand">손글씨<em></em></label><label for="f-calli"><input type="checkbox" id="f-calli">캘리폰트<em></em></label><label for="f-deco"><input type="checkbox" id="f-deco">장식체<em></em></label><label for="f-talnemo"><input type="checkbox" id="f-talnemo">탈네모<em></em></label><label for="f-coding"><input type="checkbox" id="f-coding">코딩체<em></em></label></form></div></details></div>
   </div>
 
   <div class="detail" id="detail-notosanskr" role="dialog" aria-modal="true" aria-label="본고딕 상세 정보"><label class="backdrop" for="d-none" aria-label="닫기"></label><div class="dpanel">
@@ -1202,6 +1221,11 @@ const idx=cards.map(c=>norm($('.name',c).textContent+' '+$('.by',c).textContent)
 const wr=$('.wrap');q.addEventListener('input',()=>{const v=norm(q.value);cards.forEach((c,i)=>{c.hidden=!!v&&!idx[i].includes(v)});if(v)wr.setAttribute('data-q','');else wr.removeAttribute('data-q')});
 })();
 
+
+(function(){const tn=document.querySelector('.tn'),cards=[...document.querySelectorAll('.card')];if(!tn)return;
+const upd=()=>{const n=cards.filter(c=>{if(c.hidden)return false;const cs=getComputedStyle(c);return cs.display!=='none'&&cs.visibility!=='hidden'}).length;tn.textContent=n+'개'};
+const run=()=>requestAnimationFrame(upd);
+['change','input','click'].forEach(e=>document.addEventListener(e,run));document.addEventListener('reset',()=>setTimeout(upd,0));upd()})();
 </script>
 </body>
 </html>

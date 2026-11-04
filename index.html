@@ -867,6 +867,7 @@ header .note.ver{margin-top:10px!important}
 .src .nolink,.dlinks .nolink{font-size:12px;color:#8b95a1;font-weight:500}
 .dlinks .nolink{background:#f2f4f6;border-radius:12px;padding:12px 18px;font-size:13px}
 footer{word-break:keep-all}
+@media(min-width:561px){.dd-type summary{position:relative}.dd-type .dot{position:absolute!important;top:-3px;right:-3px;width:10px!important;height:10px!important;border:2px solid #fff;box-sizing:content-box}}
 .dlic .no strong{color:#191f28!important}
 .dissue em.n{background:#e5e8eb!important;color:#333d4b!important}
 @media(max-width:560px){.wrap:has(#v-list:checked) .card .sample{background:#f2f4f6!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;grid-row:2!important;grid-column:1/-1!important}.wrap:has(#v-list:checked) .card .top{grid-row:1!important}.wrap:has(#v-list:checked) .card .lic{grid-row:3!important}.wrap:has(#v-list:checked) .card .src{grid-row:2!important;grid-column:1/-1!important;justify-self:end!important;align-self:start!important;margin:6px!important;z-index:2}}
@@ -2432,7 +2433,7 @@ $$('.card').forEach(c=>{const top=$('.top',c);if(!top)return;const wrap=document
 $$('.lic div',c).forEach((d,i)=>{if(!d.classList.contains('no')){const t=document.createElement('span');t.className='tag'+(d.classList.contains('cond')?' cond':'');t.dataset.u=keys[i];t.textContent=$('span',d).textContent;wrap.appendChild(t)}});top.appendChild(wrap)});
 const q=$('#nq'),cards=$$('.card'),norm=s=>s.toLowerCase().replace(/\s+/g,'');
 const idx=cards.map(c=>norm($('.name',c).textContent+' '+$('.by',c).textContent));
-const wr=$('.wrap');q.addEventListener('input',()=>{const v=norm(q.value);cards.forEach((c,i)=>{c.hidden=!!v&&!idx[i].includes(v)});if(v)wr.setAttribute('data-q','');else wr.removeAttribute('data-q')});
+const wr=$('.wrap');const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ',cho=ch=>{const k=ch.charCodeAt(0)-44032;return k>=0&&k<11172?CHO[Math.floor(k/588)]:ch},isJ=ch=>/[\u3131-\u314E]/.test(ch),hit=(t,v)=>{if(t.includes(v))return true;if(!/[\u3131-\u314E]/.test(v))return false;const T=[...t],V=[...v];for(let s0=0;s0+V.length<=T.length;s0++){let ok=true;for(let j=0;j<V.length;j++){const a=V[j],b=T[s0+j];if(a===b)continue;if(isJ(a)&&cho(b)===a)continue;ok=false;break}if(ok)return true}return false};q.addEventListener('input',()=>{const v=norm(q.value);cards.forEach((c,i)=>{c.hidden=!!v&&!hit(idx[i],v)});if(v)wr.setAttribute('data-q','');else wr.removeAttribute('data-q')});
 })();
 
 
